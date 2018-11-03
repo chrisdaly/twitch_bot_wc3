@@ -1,0 +1,22 @@
+{
+  "name": "twitch_bot_wc3",
+  "version": "1.0.0",
+  "description": "Twitch bot for WC3 profile stats.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisdaly/twitch_bot_wc3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisdaly/twitch_bot_wc3/issues"
+  },
+  "homepage": "https://github.com/chrisdaly/twitch_bot_wc3#readme",
+  "dependencies": {
+    "tmi.js": "^1.2.1"
+  }
+}
