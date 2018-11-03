@@ -61,6 +61,6 @@ function validate_body(body) {
 }
 
 function format_message(data) {
-    return `📈 Rank: ${data.rank}    Level: ${data.level}    Record:${data.wins}-${
+    return `🤖 Rank: ${data.rank}    Level: ${data.level}    Record:${data.wins}-${
 		data.losses} (${data.win_percentage}%)`;
 }
