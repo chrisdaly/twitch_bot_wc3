@@ -11,7 +11,7 @@ var options = {
 	},
 	identity: {
 		username: "wc3_bot",
-		password: process.env.API_KEY
+		password: process.env.TOKEN
 	},
 	channels: ["WEAREFOALS_"]
 };
