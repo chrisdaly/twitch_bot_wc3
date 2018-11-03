@@ -11,7 +11,7 @@ var options = {
 	},
 	identity: {
 		username: "wc3_bot",
-		password: "oauth:p60rn3oqwacmozt2j33wyu72oeg2x9"
+		password: process.env.API_KEY
 	},
 	channels: ["WEAREFOALS_"]
 };
@@ -41,8 +41,7 @@ client.on("chat", function(channel, userstate, message, self) {
 					} else {
 						message = "No solo stats detected.";
 					}
-					client.action(
-						"WEAREFOALS_", message);
+					client.action("WEAREFOALS_", message);
 				}
 			}
 		);
@@ -65,6 +64,5 @@ function validate_body(body) {
 
 function format_message(data) {
 	return `Rank: ${data.rank}    Level: ${data.level}    Record:${data.wins}-${
-		data.losses
-	} (${data.win_percentage}%)`;
+		data.losses} (${data.win_percentage}%)`;
 }
