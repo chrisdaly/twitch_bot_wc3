@@ -13,18 +13,20 @@ var options = {
 		username: "wc3_bot",
 		password: process.env.TOKEN
 	},
-	channels: ["WEAREFOALS_"]
+	channels: ["insuperablew3", "tod"]
 };
 
 var client = new tmi.client(options);
 client.connect();
 
 client.on("connected", function(address, port) {
-	client.action("WEAREFOALS_", "--Connected--");
+	console.log(`address = ${address}, port = ${port}`);
+	// client.action("WEAREFOALS_", "--Connected--");
 });
 
 client.on("chat", function(channel, userstate, message, self) {
 	if (self) return;
+	// console.log(userstate)
 	if (message.startsWith("!stats")) {
 		params = parse_command(message);
 		request(
@@ -41,7 +43,7 @@ client.on("chat", function(channel, userstate, message, self) {
 					} else {
 						message = "No solo stats detected.";
 					}
-					client.action("WEAREFOALS_", message);
+					client.say(channel, message);
 				}
 			}
 		);
@@ -63,18 +65,17 @@ function validate_body(body) {
 }
 
 function format_message(data) {
-	let rank = get_rank(data);
+    let rank = get_rank(data);
 
-	return `${rank} | Level ${data.level} | ${data.wins} W - ${
-		data.losses
-	} L (${data.win_percentage} %)`;
+    return `Ladder SOLO, Level ${Math.floor(data.level)}, ${rank}, ${
+		data.wins} Wins, ${data.losses} Losses, ${data.win_percentage}%`;
 }
 
-function get_rank(data){
+function get_rank(data) {
 	if (data.rank == null) {
-		return '# -'
+		return "Unranked";
 	} else {
-		return `# ${data.rank}`
+		return `Rank ${data.rank}`;
 	}
 }
 // # 9 | Level 46.46 | 1660 W - 216 L (88.49%)
