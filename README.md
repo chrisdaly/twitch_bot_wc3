@@ -21,3 +21,4 @@ progress  = start.exp - end.exp,   Emojis: chart_with_upwards_trend: . This requ
 - http://compressimage.toolur.com/
 - https://cloud.google.com/vision/docs/quickstart?apix_params=%7B%22resource%22%3A%7B%22requests%22%3A%5B%7B%22features%22%3A%5B%7B%22type%22%3A%22LABEL_DETECTION%22%7D%5D%2C%22image%22%3A%7B%22source%22%3A%7B%22imageUri%22%3A%22gs%3A%2F%2Ftwitch_vision_bucket%2Fdemo-image.jpg%22%7D%7D%7D%5D%7D%7D
 - https://github.com/ilkkao/capture-video-frame
+- keep DB of all accs, do regular expression to find similar names.

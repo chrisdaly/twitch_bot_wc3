@@ -13,7 +13,7 @@ var options = {
 		username: "wc3_bot",
 		password: process.env.TOKEN
 	},
-	channels: ["insuperablew3", "tod"]
+	channels: ["WEAREFOALS_", "tod", "insuperablew3"]
 };
 
 var client = new tmi.client(options);
@@ -26,7 +26,6 @@ client.on("connected", function(address, port) {
 
 client.on("chat", function(channel, userstate, message, self) {
 	if (self) return;
-	// console.log(userstate)
 	if (message.startsWith("!stats")) {
 		params = parse_command(message);
 		request(
@@ -43,6 +42,7 @@ client.on("chat", function(channel, userstate, message, self) {
 					} else {
 						message = "No solo stats detected.";
 					}
+					channel = channel.slice(1);
 					client.say(channel, message);
 				}
 			}
