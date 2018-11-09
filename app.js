@@ -27,6 +27,7 @@ client.on("connected", function(address, port) {
 client.on("chat", function(channel, userstate, message, self) {
 	if (self) return;
 	if (message.startsWith("!stats")) {
+		console.log(message)
 		params = parse_command(message);
 		request(
 			{
