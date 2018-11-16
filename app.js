@@ -1,6 +1,5 @@
 var tmi = require("tmi.js");
 var request = require("request");
-
 var options = {
 	options: {
 		debug: true
@@ -13,9 +12,9 @@ var options = {
 		username: "wc3_bot",
 		password: process.env.TOKEN
 	},
-	channels: ["followgrubby", "WEAREFOALS_", "tod", "insuperablew3", "garinthegoat"]
+	channels: ["followgrubby", "WEAREFOALS_", "tod", "insuperablew3", "garinthegoat", "followSerrey"]
+	// channels: ["madquacks"]
 };
-
 var client = new tmi.client(options);
 client.connect();
 
@@ -80,3 +79,24 @@ function get_rank(data) {
 	}
 }
 // # 9 | Level 46.46 | 1660 W - 216 L (88.49%)
+// !stats WEAREFOALS
+// !info WEAREFOALS
+// !stats rt WEAREFOALS
+// !stats solo WEAREFOALS
+
+
+// let message = "!stats solo WEAREFOALS azeroth"
+// let values = message.slice(1).trim().split(' ')
+
+
+ 
+// if (['solo', 'rt'].includes(values[1])) {
+// 	let endpoint = values[1]
+// } else {}
+
+// if (values.length == 2){
+// 	values.push('Northrend')
+// }
+// const keys = ['endpoint', 'player', 'server']
+// let params = Object.assign({}, ...keys.map((n, index) => ({[n]: values[index]})))
+
