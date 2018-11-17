@@ -20,7 +20,7 @@ client.connect();
 
 client.on("connected", function(address, port) {
 	console.log(`address = ${address}, port = ${port}`);
-	// client.action("WEAREFOALS_", "--Connected--");
+	// client.action("WEAREFOALS_", "--Connected--");//
 });
 
 client.on("chat", function(channel, userstate, message, self) {
