@@ -12,8 +12,8 @@ var options = {
 		username: "wc3_bot",
 		password: process.env.TOKEN
 	},
-	channels: ["followgrubby", "WEAREFOALS_", "tod", "insuperablew3", "garinthegoat", "followSerrey"]
-	// channels: ["madquacks"]
+	// channels: ["followgrubby", "WEAREFOALS_", "tod", "insuperablew3", "garinthegoat", "followSerrey"]
+	channels: ["madquacks"]
 };
 var client = new tmi.client(options);
 client.connect();
@@ -25,78 +25,33 @@ client.on("connected", function(address, port) {
 
 client.on("chat", function(channel, userstate, message, self) {
 	if (self) return;
-	if (message.startsWith("!stats")) {
-		console.log(message)
-		params = parse_command(message);
-		request(
-			{
-				url:
-					"https://bqeat6w63f.execute-api.us-east-1.amazonaws.com/dev",
-				json: true,
-				qs: params
-			},
+	if (message.startsWith("!")) {
+		params = parse_message(message);
+		qs = (({ player, server }) => ({ player, server }))(params);
+    	url = `https://bqeat6w63f.execute-api.us-east-1.amazonaws.com/prod/${params['endpoint']}`
+    	console.log('qs = ', qs)
+    	console.log('url = ', url)
+		request({ url, qs },
 			function(error, response, body) {
-				if (!error && response.statusCode === 200) {
-					if (validate_body(body)) {
-						message = format_message(body.individual.solo);
-					} else {
-						message = "No solo stats detected.";
-					}
+				if (!error) {
 					channel = channel.slice(1);
-					client.say(channel, message);
+					client.say(channel, body);
 				}
 			}
 		);
 	}
 });
 
-function parse_command(message) {
-	params = message.trim().split(" ");
-	player = params[1];
-	params.length == 3 ? (server = params[2]) : (server = "northrend");
-	return {
-		player: player,
-		server: server
-	};
+function parse_message(message){
+    let values = message.slice(1).trim().split(' ')
+    if (['solo', 'rt'].includes(values[1]) & (values[0] == 'stats')) {
+        keys = ['placeholder', 'endpoint', 'player', 'server']
+    } else {
+        keys = ['endpoint', 'player', 'server']
+    }
+    let params = Object.assign({}, ...keys.map((n, index) => ({[n]: values[index]})))
+    if (params.endpoint == 'rt'){params.endpoint = 'random_team'}
+	if (params.endpoint == 'stats'){params.endpoint = 'solo'}
+
+    return params
 }
-
-function validate_body(body) {
-	if (("individual" in body) & ("solo" in body.individual)) return true;
-}
-
-function format_message(data) {
-    let rank = get_rank(data);
-
-    return `Ladder SOLO, Level ${Math.floor(data.level)}, ${rank}, ${
-		data.wins} Wins, ${data.losses} Losses, ${data.win_percentage}%`;
-}
-
-function get_rank(data) {
-	if (data.rank == null) {
-		return "Unranked";
-	} else {
-		return `Rank ${data.rank}`;
-	}
-}
-// # 9 | Level 46.46 | 1660 W - 216 L (88.49%)
-// !stats WEAREFOALS
-// !info WEAREFOALS
-// !stats rt WEAREFOALS
-// !stats solo WEAREFOALS
-
-
-// let message = "!stats solo WEAREFOALS azeroth"
-// let values = message.slice(1).trim().split(' ')
-
-
- 
-// if (['solo', 'rt'].includes(values[1])) {
-// 	let endpoint = values[1]
-// } else {}
-
-// if (values.length == 2){
-// 	values.push('Northrend')
-// }
-// const keys = ['endpoint', 'player', 'server']
-// let params = Object.assign({}, ...keys.map((n, index) => ({[n]: values[index]})))
-

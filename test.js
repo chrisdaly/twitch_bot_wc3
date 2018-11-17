@@ -1,34 +1,29 @@
-function format_message(data) {
-    let rank = get_rank(data);
+let message = "!stats solo WEAREFOALS azeroth"
+messages = [
+    "!stats solo WEAREFOALS azeroth",
+    "!fake solo WEAREFOALS azeroth",
+    "!solo WEAREFOALS azeroth",
+    "!stats rt WEAREFOALS azeroth",
+    "!info WEAREFOALS azeroth"
+]
 
-    return `Ladder SOLO, Level ${Math.floor(data.level)}, ${rank}, ${
-		data.wins} Wins, ${data.losses} Losses, ${data.win_percentage}%`;
-}
-
-function get_rank(data) {
-    if (data.rank == null) {
-        return "Unranked";
+function parse_message(message){
+    let values = message.slice(1).trim().split(' ')
+    if (['solo', 'rt'].includes(values[1]) & (values[0] == 'stats')) {
+        keys = ['placeholder', 'endpoint', 'player', 'server']
     } else {
-        return `Rank ${data.rank}`;
+        keys = ['endpoint', 'player', 'server']
     }
+    let params = Object.assign({}, ...keys.map((n, index) => ({[n]: values[index]})))
+    console.log(params)
+    url = `https://bqeat6w63f.execute-api.us-east-1.amazonaws.com/dev/${params['endpoint']}`
+    console.log(url)
+    return params
 }
 
-data_all = [{
-        wins: 1010,
-        losses: 14,
-        rank: 1,
-        experience: "27,938",
-        level: 60.86,
-        win_percentage: 98.63
-    },
-    {
-        wins: 7,
-        losses: 0,
-        rank: null,
-        experience: "758",
-        level: 5.52,
-        win_percentage: 100.0
-    }
-];
-
-data_all.forEach(x => console.log(format_message(x)));
+// messages.forEach(d => parse_message(d))
+message = "!stats solo WEAREFOALS azeroth",
+params = parse_message(message);
+endpoint = params['endpoint']
+qs = (({ player, server }) => ({ player, server }))(params);
+console.log(qs)
