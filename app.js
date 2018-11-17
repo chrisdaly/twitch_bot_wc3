@@ -26,6 +26,8 @@ client.on("connected", function(address, port) {
 client.on("chat", function(channel, userstate, message, self) {
 	if (self) return;
 	if (message.startsWith("!")) {
+		// Check for others
+		// dont allow 400s lol
 		params = parse_message(message);
 		qs = (({ player, server }) => ({ player, server }))(params);
     	url = `https://bqeat6w63f.execute-api.us-east-1.amazonaws.com/prod/${params['endpoint']}`
@@ -33,7 +35,7 @@ client.on("chat", function(channel, userstate, message, self) {
     	console.log('url = ', url)
 		request({ url, qs },
 			function(error, response, body) {
-				if (!error) {
+				if (!error && response.statusCode === 200) {
 					channel = channel.slice(1);
 					client.say(channel, body);
 				}
