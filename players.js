@@ -24,5 +24,10 @@ var players = {
 		server: "northrend",
 		endpoint: "random_team"
 	}
+	garinthegoat: {
+		player: "garinthegoat",
+		server: "azeroth",
+		endpoint: "random_team"
+	}
 };
 module.exports = players;
