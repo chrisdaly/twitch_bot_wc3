@@ -25,7 +25,7 @@ client.on("connected", function(address, port) {
 
 client.on("chat", function(channel, userstate, message, self) {
 	if (self) return;
-	if (message.startsWith("!")) {
+	if (message.startsWith("!stats") | message.startsWith("!info")) {
 		// Check for others
 		// dont allow 400s lol
 		channel = channel.slice(1);
@@ -58,7 +58,7 @@ function parse_message(message) {
     
     if (values.length == 1) {
     	if (values[0] == 'info') return {'endpoint': 'info'}
-    	return
+    	if (values[0] == 'info') return {'endpoint': 'info'}
     }
     if (values.length == 2) {
         if (['solo', 'rt', 'info'].includes(values[1])) return {'endpoint': values[1]}
