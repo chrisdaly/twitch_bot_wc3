@@ -23,7 +23,7 @@ var players = {
 		player: "WEAREFOALS",
 		server: "northrend",
 		endpoint: "random_team"
-	}
+	},
 	garinthegoat: {
 		player: "garinthegoat",
 		server: "azeroth",
