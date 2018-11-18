@@ -25,9 +25,9 @@ var players = {
 		endpoint: "random_team"
 	},
 	garinthegoat: {
-		player: "garinthegoat",
+		player: "headshot-80",
 		server: "azeroth",
-		endpoint: "random_team"
+		endpoint: "solo"
 	}
 };
 module.exports = players;
