@@ -13,8 +13,8 @@ var options = {
 		username: "wc3_bot",
 		password: process.env.TOKEN
 	},
-	channels: ["followgrubby", "WEAREFOALS_", "tod", "insuperablew3", "garinthegoat", "followSerrey"]
-	// channels: ["WEAREFOALS_"]
+	// channels: ["followgrubby", "WEAREFOALS_", "tod", "insuperablew3", "garinthegoat", "followSerrey"]
+	channels: ["WEAREFOALS_"]
 };
 var client = new tmi.client(options);
 client.connect();
@@ -29,11 +29,17 @@ client.on("chat", function(channel, userstate, message, self) {
 		// Check for others
 		// dont allow 400s lol
 		channel = channel.slice(1);
-		let params = Object.assign({}, players[channel.toLowerCase()]); 
-		let params_command = parse_message(message)
-		for (var key in params_command) { params[key] = params_command[key]}
-		console.log(params_command)
-
+		let params = Object.assign({}, players[channel.toLowerCase()]);
+		console.log(channel);
+		console.log("base params: ", params);
+		let params_command = parse_message(message);
+		for (var key in params_command) {
+			if (params_command[key] != null) {
+				params[key] = params_command[key];
+			}
+		}
+		console.log(params_command);
+		console.log(params);
 		qs = (({ player, server }) => ({ player, server }))(params);
 		url = `https://bqeat6w63f.execute-api.us-east-1.amazonaws.com/prod/${
 			params["endpoint"]
@@ -51,31 +57,34 @@ client.on("chat", function(channel, userstate, message, self) {
 });
 
 function parse_message(message) {
-    let values = message
-        .slice(1)
-        .trim()
-        .split(" ");
-    
-    if (values.length == 1) {
-    	if (values[0] == 'info') return {'endpoint': 'info'}
-    	if (values[0] == 'info') return {'endpoint': 'info'}
-    }
-    if (values.length == 2) {
-        if (['solo', 'rt', 'info'].includes(values[1])) return {'endpoint': values[1]}
-        else return {'player': values[1]}
-    }
+	let values = message
+		.slice(1)
+		.trim()
+		.split(" ");
 
-    if (["solo", "rt"].includes(values[1]) & (values[0] == "stats")) {
-        keys = ["placeholder", "endpoint", "player", "server"];
-    } else {
-        keys = ["endpoint", "player", "server"];
-    }
-    let params = Object.assign({},
-        ...keys.map((n, index) => ({
-            [n]: values[index] }))
-    );
-    if (params.endpoint == "rt") {
-        params.endpoint = "random_team";
-    }
-    return params;
+	if (values.length == 1) {
+		if (values[0] == "stats") return;
+		if (values[0] == "info") return { endpoint: "info" };
+	}
+	if (values.length == 2) {
+		if (["solo", "rt", "info"].includes(values[1]))
+			return { endpoint: values[1] };
+		else return { player: values[1] };
+	}
+
+	if (["solo", "rt"].includes(values[1]) & (values[0] == "stats")) {
+		keys = ["placeholder", "endpoint", "player", "server"];
+	} else {
+		keys = ["endpoint", "player", "server"];
+	}
+	let params = Object.assign(
+		{},
+		...keys.map((n, index) => ({
+			[n]: values[index]
+		}))
+	);
+	if (params.endpoint == "rt") {
+		params.endpoint = "random_team";
+	}
+	return params;
 }
