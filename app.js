@@ -1,6 +1,8 @@
 var tmi = require("tmi.js");
 var request = require("request");
 var players = require("./players");
+var emojis = require("./emojis");
+
 var options = {
 	options: {
 		debug: true
@@ -49,6 +51,7 @@ client.on("chat", function(channel, userstate, message, self) {
 				if (body.startsWith('"')) {
 					body = body.slice(1, -1);
 				}
+				if 
 				client.say(channel, body);
 			}
 		});

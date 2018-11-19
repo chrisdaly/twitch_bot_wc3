@@ -25,3 +25,4 @@ progress  = start.exp - end.exp,   Emojis: chart_with_upwards_trend: . This requ
 - keep DB of all accs, do regular expression to find similar names.
 - can find possible match via level and race, looking up ladder ranking
 - if someone does a bad command, whisper them with docs
+- grubHU grubORC grubNE grubUD 
