@@ -15,8 +15,8 @@ var options = {
 		username: "wc3_bot",
 		password: process.env.TOKEN
 	},
-	// channels: Object.keys(players) 
-	channels: ["WEAREFOALS_"]
+	channels: Object.keys(players) 
+	// channels: ["WEAREFOALS_"]
 };
 var client = new tmi.client(options);
 client.connect();
