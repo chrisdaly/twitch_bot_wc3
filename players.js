@@ -17,12 +17,12 @@ var players = {
 	followserrey: {
 		player: "FollowSerrey",
 		server: "northrend",
-		endpoint: "random_team"
+		endpoint: "rt"
 	},
 	wearefoals_: {
 		player: "WEAREFOALS",
 		server: "northrend",
-		endpoint: "random_team"
+		endpoint: "rt"
 	},
 	garinthegoat: {
 		player: "headshot-80",
