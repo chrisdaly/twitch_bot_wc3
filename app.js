@@ -36,8 +36,8 @@ client.on("chat", function(channel, userstate, message, self) {
 				params[key] = params_command[key];
 			}
 		}
-		console.log(params_command);
-		console.log(params);
+		console.log('params_command: ', params_command);
+		console.log('params', params);
 		qs = (({ player, server }) => ({ player, server }))(params);
 		url = 'https://bqeat6w63f.execute-api.us-east-1.amazonaws.com/dev/user';
 		request({ url, qs, json:true }, function(error, response, body) {
@@ -46,6 +46,7 @@ client.on("chat", function(channel, userstate, message, self) {
 					// console.log(body)
 				}
 				else {
+					console.log('formatter input: ', params['game_type'])
 					formatter = router[params['game_type']]
 					client.say(channel, formatter(body));
 			}

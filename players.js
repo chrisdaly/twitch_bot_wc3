@@ -2,32 +2,32 @@ var players = {
 	tod: {
 		player: "RomanticHuman",
 		server: "northrend",
-		endpoint: "solo"
+		game_type: "solo"
 	},
 	followgrubby: {
 		player: "FollowGrubby",
 		server: "northrend",
-		endpoint: "solo"
+		game_type: "solo"
 	},
 	insuperablew3: {
 		player: "Pieck",
 		server: "azeroth",
-		endpoint: "solo"
+		game_type: "solo"
 	},
 	followserrey: {
 		player: "FollowSerrey",
 		server: "northrend",
-		endpoint: "rt"
+		game_type: "rt"
 	},
 	wearefoals_: {
 		player: "WEAREFOALS",
 		server: "northrend",
-		endpoint: "rt"
+		game_type: "rt"
 	},
 	garinthegoat: {
 		player: "headshot-80",
 		server: "azeroth",
-		endpoint: "solo"
+		game_type: "solo"
 	}
 };
 module.exports = players;
