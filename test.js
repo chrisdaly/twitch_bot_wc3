@@ -17,7 +17,7 @@ var emojis = {
     Orc: "grubORC",
     "Night Elf": "grubNE",
     Undead: "grubUD",
-    "No main race": "No Main race",
+    "No Main race": "No Main race",
     "Random": "Random"
 };
 

@@ -4,6 +4,7 @@ var players = {
 		server: "northrend",
 		game_type: "solo"
 	},
+
 	followgrubby: {
 		player: "FollowGrubby",
 		server: "northrend",
@@ -26,6 +27,11 @@ var players = {
 	},
 	garinthegoat: {
 		player: "headshot-80",
+		server: "azeroth",
+		game_type: "solo"
+	},
+	pridesc1: {
+		player: "anewb.",
 		server: "azeroth",
 		game_type: "solo"
 	}
