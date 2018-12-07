@@ -10,6 +10,11 @@ var players = {
 		server: "northrend",
 		game_type: "solo"
 	},
+	reforgedente: {
+		player: "tanymommy",
+		server: "northrend",
+		game_type: "solo"
+	},
 	insuperablew3: {
 		player: "Pieck",
 		server: "azeroth",
