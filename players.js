@@ -39,6 +39,11 @@ var players = {
 		player: "anewb.",
 		server: "azeroth",
 		game_type: "solo"
+	},
+	royaluranus: {
+		player: "gimmeprimesub",
+		server: "azeroth",
+		game_type: "solo"
 	}
 };
 module.exports = players;
