@@ -23,7 +23,7 @@ var players = {
 	followserrey: {
 		player: "FollowSerrey",
 		server: "northrend",
-		game_type: "rt"
+		game_type: "solo"
 	},
 	wearefoals_: {
 		player: "WEAREFOALS",
