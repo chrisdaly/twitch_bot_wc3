@@ -25,6 +25,11 @@ var players = {
 		server: "northrend",
 		game_type: "solo"
 	},
+	ena1337: {
+		player: "ena1337",
+		server: "northrend",
+		game_type: "solo"
+	},
 	wearefoals_: {
 		player: "WEAREFOALS",
 		server: "northrend",
