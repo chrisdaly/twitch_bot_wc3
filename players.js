@@ -49,6 +49,11 @@ var players = {
 		player: "gimmeprimesub",
 		server: "azeroth",
 		game_type: "solo"
+	},
+	knoff_swe: {
+		player: "knoff[swe]",
+		server: "northrend",
+		game_type: "solo"
 	}
 };
 module.exports = players;
